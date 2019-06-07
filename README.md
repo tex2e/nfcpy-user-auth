@@ -1,26 +1,42 @@
 
 # User Auth with nfcpy
 
-### Setup in MacOS
+## Setup
+
+- MacOS
+    ```
+    brew install libusb
+    pip2 install nfcpy
+    ```
+- Ubuntu and RaspberryPi
+    ```
+    sudo apt -y install libusb-dev
+    pip2 install nfcpy
+    ```
+
+And assign the device to the 'plugdev' group (not needed when MacOS).
 
 ```
-$ brew install libusb
-$ pip2 install nfcpy
+sudo sh -c 'echo SUBSYSTEM==\"usb\", ACTION==\"add\", ATTRS{idVendor}==\"054c\", ATTRS{idProduct}==\"06c3\", GROUP=\"plugdev\" >> /etc/udev/rules.d/nfcdev.rules'
+sudo udevadm control -R
 ```
 
-### Setup in RaspberryPi
+Make sure the environment:
 
 ```
-$ sudo apt install libusb-dev
-$ pip2 install nfcpy
+$ python2 -m nfc
+This is the 1.0.0 version of nfcpy run in Python 2.7.12
+on Linux-4.4.0-150-generic-x86_64-with-Ubuntu-16.04-xenial
+I'm now searching your system for contactless devices
+** found SONY RC-S380/P NFC Port-100 v1.11 at usb:002:007
+I'm not trying serial devices because you haven't told me
+-- add the option '--search-tty' to have me looking
+-- but beware that this may break other serial devs
 ```
 
-Assign the device to the 'plugdev' group.
+---
 
-```
-$ sudo sh -c 'echo SUBSYSTEM==\"usb\", ACTION==\"add\", ATTRS{idVendor}==\"054c\", ATTRS{idProduct}==\"06c3\", GROUP=\"plugdev\" >> /etc/udev/rules.d/nfcdev.rules'
-$ sudo udevadm control -R
-```
+## Execute
 
 ### Prepare a Card's Hash Value
 
