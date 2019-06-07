@@ -1,6 +1,5 @@
 # coding: utf-8
 
-import os
 import binascii
 import nfc
 
@@ -31,9 +30,9 @@ def connected(tag):
     card_hash = sha512(idm, pmm, syscode)
 
     if card_hash in authenticated_cards:
-        os.system('echo; banner -w 100 OK; echo')
+        print('OK')
     else:
-        os.system('echo; banner -w 100 NG; echo')
+        print('NG')
 
     return True
 
